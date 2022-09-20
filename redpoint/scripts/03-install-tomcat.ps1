@@ -63,6 +63,7 @@ try {
 }
 catch {
   Write-Error $_ -Category NotInstalled
+  Remove-Item -Path $TOMCAT_SRC_PATH\config.ini -Force
   throw "Installation failed."
 }
 
@@ -75,6 +76,7 @@ if($null -eq $service){
   Write-Error -Message "Tomcat windows sevice not found" -Category ObjectNotFound
 }
 
+#destroy config.ini with secret
 Remove-Item -Path $TOMCAT_SRC_PATH\config.ini -Force
 
 Write-Output "Installation complete."
