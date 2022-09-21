@@ -44,18 +44,18 @@ $Ptr = [System.Runtime.InteropServices.Marshal]::SecureStringToCoTaskMemUnicode(
 $password = [System.Runtime.InteropServices.Marshal]::PtrToStringUni($Ptr)
 [System.Runtime.InteropServices.Marshal]::ZeroFreeCoTaskMemUnicode($Ptr)
 try {
-  ((Get-Content -path $TOMCAT_SRC_PATH\config.setup.ini -Raw) -replace "TomcatAdminPassword=","TomcatAdminPassword=$password") | Set-Content -Path $TOMCAT_SRC_PATH\config.ini
+  ((Get-Content -path .\config.setup.ini -Raw) -replace "TomcatAdminPassword=","TomcatAdminPassword=$password") | Set-Content -Path .\config.ini
 }
 catch {
   Write-Error -Message "Failed to generate config.ini"
 }
 
-if(!(Test-Path -Path $TOMCAT_SRC_PATH\config.ini)) {
+if(!(Test-Path -Path .\config.ini)) {
   Write-Error -Message "Tomcat install config.ini not found" -Category ObjectNotFound
   throw "Stopping install process due to Tomcat config.ini being unavailable"
 }
 
-$installArgs = `"/S /C=${TOMCAT_SRC_PATH}\config.ini /D=${INSTALL_DRIVE}:\Program Files\Apache Software Foundation\Tomcat 9.0`"
+$installArgs = "/S /C=.\config.ini /D=${INSTALL_DRIVE}:\Program Files\Apache Software Foundation\Tomcat 9.0"
 
 try {
   Start-Process -FilePath $TOMCAT_SRC_PATH\$TOMCAT_BINARY -Wait -ArgumentList $installArgs
@@ -67,7 +67,7 @@ catch {
   throw "Installation failed."
 }
 
-if(!(Test-Path -Path ${INSTALL_DRIVE}:\Program Files\Apache Software Foundation\Tomcat 9.0\conf\server.xml)){
+if(!(Test-Path -Path "${INSTALL_DRIVE}:\Program Files\Apache Software Foundation\Tomcat 9.0\conf\server.xml")){
   Write-Error -Message "Tomcat server.xml not found in expected location" -Category ObjectNotFound
 }
 
@@ -77,6 +77,6 @@ if($null -eq $service){
 }
 
 #destroy config.ini with secret
-Remove-Item -Path $TOMCAT_SRC_PATH\config.ini -Force
+Remove-Item -Path .\config.ini -Force
 
 Write-Output "Installation complete."
