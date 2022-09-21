@@ -70,4 +70,6 @@ if(!($service.Status -eq "Running")) {
   }
 }
 
+Set-Service -Name Tomcat9 -StartupType Automatic
+
 Write-Output "Setup complete."
