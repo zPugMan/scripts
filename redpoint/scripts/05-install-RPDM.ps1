@@ -15,7 +15,7 @@ $RPDM_TEMP_OPTIONS = "rpdm.properties"
 
 Write-Output "Installation of RPDM initiated"
 
-$rpdmServiceAccount = Read-Host -Prompt "RPDM Service account (e.g. RPDM_UAT_USER@tivityhealth.com)"
+$rpdmServiceAccount = Read-Host -Prompt "RPDM Service account (e.g. RPDM_UAT_USER@xyz.com)"
 $rpdmServicePassword = Read-Host -Prompt "RPDM Service account password?" -AsSecureString
 
 Write-Output "Installing RPDM"

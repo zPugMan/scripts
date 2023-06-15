@@ -9,7 +9,7 @@ $ENV = "uat"  # uat | prod
 $MSI_PATH = "e:\Software\datadog"
 $MSI = "${MSI_PATH}\datadog-agent-7-latest.amd64.msi"
 $DD_DEFAULT_PATH = "c:\ProgramData\Datadog"
-$TAGS = "tivity_application-name:Redpoint","tivity_environment:$ENV"
+$TAGS = "application-name:Redpoint","environment:$ENV"
 $PRIOR_HOSTNAME = "PAZRPDMUAT01"
 
 #copy over relevant YAMLs
