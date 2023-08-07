@@ -1,5 +1,5 @@
 # Introduction 
-Collection of scripts for automating Redpoint.
+Collection of scripts for automating Redpoint and other maintenance tasks
 
 
 # Contribute
